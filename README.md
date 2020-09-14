@@ -3,7 +3,7 @@ Base for developing Flutter apps.It provides the function of life cycles.In addi
 
 ## Usage
 
-dependencies: flutter_base: ^1.0.0
+dependencies: flutter_lifecycler_base: ^1.0.1
 
 It has two parts:  normal and Tab.Next，provides their usage examples.
 
