@@ -3,7 +3,27 @@ Base for developing Flutter apps.It provides the function of life cycles.In addi
 
 ## Usage
 
-dependencies: flutter_lifecycler_base: ^1.0.1
+dependencies: flutter_lifecycle_base: ^1.0.2
+
+Since the base class is implemented based on NavigatorObserver, you must register `BaseNavigatorObserver` under materialApp
+
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        // This is the theme of your application.
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      navigatorObservers: [BaseNavigationObserver()],
+    );
+  }
+}
+```
 
 It has two parts:  normal and Tab.Next，provides their usage examples.
 
@@ -71,57 +91,63 @@ class _BaseTestPageState extends BaseWidgetState<BaseTestPage> {
 The code of Tab container:
 
 ```dart
-class MainBottomTabView extends BaseTabWidget{
+class MainBottomTabView extends BaseTabWidget {
+
+  @override
+  _MainBottomTabViewState createState() => _MainBottomTabViewState();
+}
+
+class _MainBottomTabViewState extends BaseTabState<MainBottomTabView> {
   int _currentIndex;
   List<Widget> _pages;
   PageController _controller;
-  
+
   List<Widget> pages = [
     FirstPage(),
     SecondPage(),
     ThirdPage()
   ];
-  
+
   List<BottomNavigationBarItem> tabList = [
     BottomNavigationBarItem(
         icon: Image.asset('assets/images/icon_main_tab_first_default.png'),
         title: Text(
           'First',
-          style: labelStyle,
+         // style: labelStyle,
         ),
         activeIcon:
-            Image.asset('assets/images/icon_main_tab_first_selected.png')),
+        Image.asset('assets/images/icon_main_tab_first_selected.png')),
     BottomNavigationBarItem(
         icon: Image.asset('assets/images/icon_main_tab_second_default.png'),
         title: Text(
           'Second',
-          style: labelStyle,
+          //style: labelStyle,
         ),
         activeIcon:
-            Image.asset('assets/images/icon_main_tab_second_selected.png')),
+        Image.asset('assets/images/icon_main_tab_second_selected.png')),
     BottomNavigationBarItem(
         icon: Image.asset('assets/images/icon_main_tab_third_default.png'),
         title: Text(
           'Third',
-          style: labelStyle,
+         // style: labelStyle,
         ),
         activeIcon:
-            Image.asset('assets/images/icon_main_tab_third_selected.png')),
+        Image.asset('assets/images/icon_main_tab_third_selected.png')),
   ];
-  
+
   @override
   void initState() {
     super.initState();
     _currentIndex = 0;
-    _pages = widget.pages;
+    _pages = pages;
     _controller = PageController(initialPage: _currentIndex, keepPage: true);
   }
-	
+
   @override
   Widget build(BuildContext context) {
     return DoubleBackTapExitApp(
       child: Scaffold(
-        body: PageWidget( 
+        body: PageWidget(
           /// 禁止滑动
           physics: NeverScrollableScrollPhysics(),
           tabWidgets: _pages,
@@ -129,21 +155,21 @@ class MainBottomTabView extends BaseTabWidget{
           onPageChanged: _onPageChanged,
         ),
         bottomNavigationBar: BottomNavigationBar(
-          items: widget.tabList,
+          items: tabList,
           currentIndex: _currentIndex,
           onTap: _onTabChanged,
         ),
       ),
     );
   }
-    
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
-    
-	@override
+
+  @override
   void didAppear() {
     super.didAppear();
   }
@@ -152,14 +178,14 @@ class MainBottomTabView extends BaseTabWidget{
   void disappear() {
     super.disappear();
   }
-  
+
   void _onPageChanged(int index) {}
-  
+
   void _onTabChanged(int index) {
     jumpToIndex(index);
   }
-    
-   /// 跳到指定的Tab
+
+  /// 跳到指定的Tab
   void jumpToIndex(int index) {
     setState(() {
       if (_currentIndex != index) {
