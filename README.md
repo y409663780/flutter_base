@@ -206,7 +206,7 @@ class FirstPage extends BaseTabPageWidget {
 
 ## Tips
 
-- It is easy to use ,based on the NavigatorObserver implementation, maximum compatibiwity with the SDK version life cycle
+- It is easy to use ,based on the NavigatorObserver implementation, maximum compatibility with the SDK version life cycle
 - Life cycle methods are independent of each other,For example,when your application is switched to the background, the disAppear method will not be called, only onBackground will be called
 - If your tab container does not extends BaseTabWidget, the life cycle of the fragment will not respond when switching to a normal page,it will only respond when switching internally
 - The key to the fragment life cycle is the custom PageView component, which must be used,otherwise the life cycle will no longer respond when internal switching
