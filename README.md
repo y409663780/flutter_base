@@ -201,11 +201,23 @@ The fragment code of Tab:
 
 ```dart
 class FirstPage extends BaseTabPageWidget {
-	@override
-  int getIndex() {
-    return 0;
+  @override
+  _FirstPageState createState() {
+    return _FirstPageState();
   }
-  
+}
+
+class _FirstPageState extends BaseTabPageState<FirstPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
   @override
   void didAppear() {
     super.didAppear();
@@ -217,13 +229,39 @@ class FirstPage extends BaseTabPageWidget {
   }
 
   @override
+  void onBackground() {
+    super.onBackground();
+  }
+
+  @override
   void onForeground() {
     super.onForeground();
   }
 
   @override
-  void onBackground() {
-    super.onBackground();
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return Scaffold(
+      body: Center(
+          child: RaisedButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => FourthPage()));
+            },
+            child: Text("first_page"),
+          )
+      ),
+    );
+  }
+
+  @override
+  int getIndex() {
+    return 0;
   }
 }
 ```
