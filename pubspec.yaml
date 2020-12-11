@@ -1,8 +1,8 @@
 name: flutter_base
 description: A new Flutter package.
 version: 1.0.4
-author:
-homepage:
+author: y409663780
+homepage: https://github.com/y409663780/flutter_base
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
