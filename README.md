@@ -3,7 +3,7 @@ Base for developing Flutter apps.It provides the function of life cycles.In addi
 
 ## Usage
 
-dependencies: flutter_lifecycle_base: ^1.0.4
+dependencies: flutter_lifecycle_base: ^1.0.5
 
 Since the base class is implemented based on NavigatorObserver, you must register `BaseNavigatorObserver` under materialApp
 

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../base_state_widget.dart';
 import 'tab_navigator_manager.dart';
 
-import '../navigator_manager.dart';
-
 ///Tab page 基类
 abstract class BaseTabPageWidget extends StatefulWidget {
 

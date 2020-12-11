@@ -1,7 +1,6 @@
-name: flutter_base
-description: A new Flutter package.
-version: 1.0.4
-author: y409663780
+name: flutter_lifecycle_base
+description: It provides the function of life cycles.In addition to the original life cycle of the system, it also provides additional life cycle methods
+version: 1.0.5
 homepage: https://github.com/y409663780/flutter_base
 
 environment:
