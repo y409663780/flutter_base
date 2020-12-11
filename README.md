@@ -3,7 +3,7 @@ Base for developing Flutter apps.It provides the function of life cycles.In addi
 
 ## Usage
 
-dependencies: flutter_lifecycle_base: ^1.0.2
+dependencies: flutter_lifecycle_base: ^1.0.4
 
 Since the base class is implemented based on NavigatorObserver, you must register `BaseNavigatorObserver` under materialApp
 
@@ -175,9 +175,15 @@ class _MainBottomTabViewState extends BaseTabState<MainBottomTabView> {
   }
 
   @override
+  bool isAllTabRefresh() {
+    return true;
+  }
+
+  @override
   void disappear() {
     super.disappear();
   }
+
 
   void _onPageChanged(int index) {}
 
