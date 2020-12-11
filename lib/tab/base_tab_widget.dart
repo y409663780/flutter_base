@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'tab_navigator_manager.dart';
-
 import '../base_state_widget.dart';
-import '../navigator_manager.dart';
+import 'tab_navigator_manager.dart';
 
 class BaseTabWidget extends BaseStatefulWidget {
 
@@ -20,15 +18,23 @@ abstract class BaseTabState<T extends BaseTabWidget>
   @override
   void didAppear() {
     super.didAppear();
-    print(
-        "isFirstLoad====>${TabNavigatorManager().isFirstLoad}=====isClick====>${TabNavigatorManager().isClick}");
     if (!TabNavigatorManager().isClick && !TabNavigatorManager().isFirstLoad) {
       if (TabNavigatorManager().isUseBaseTab(TabNavigatorManager().preIndex)) {
-        TabNavigatorManager()
-            .tabMap[TabNavigatorManager().preIndex]
-            .didAppear();
+        if(isAllTabRefresh()){
+          TabNavigatorManager().tabMap.forEach((key, value) { value.didAppear();});
+        }else{
+          TabNavigatorManager()
+              .tabMap[TabNavigatorManager().preIndex]
+              .didAppear();
+        }
       }
     }
+  }
+
+  /// 是否刷新所有Tab页面，响应所有Tab页面的didAppear回调方法，默认只刷新当前显示/回退后显示的页面
+  /// 目前只处理didAppear的特殊情况，disappear不受影响
+  bool isAllTabRefresh(){
+    return false;
   }
 
   @override
