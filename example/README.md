@@ -1,4 +1,4 @@
-# exmaple
+# example
 
 A new Flutter application.
 

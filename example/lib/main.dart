@@ -1,7 +1,8 @@
-import 'package:exmaple/main_bottom_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_lifecycler_base/base_state_widget.dart';
+import 'package:flutter_lifecycle_base/base_state_widget.dart';
+
+import 'main_bottom_tab.dart';
 
 void main() {
   runApp(MyApp());

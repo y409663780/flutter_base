@@ -1,16 +1,18 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lifecycler_base/tab/base_tab_page_widget.dart';
+import 'package:flutter_lifecycle_base/tab/base_tab_page_widget.dart';
 
-class FourthPage extends BaseTabPageWidget {
+import '../fouth_page.dart';
+
+class ThirdPage extends BaseTabPageWidget {
   @override
-  _FourthPagePageState createState() {
-    return _FourthPagePageState();
+  _ThirdPageState createState() {
+    return _ThirdPageState();
   }
 }
 
-class _FourthPagePageState extends BaseTabPageState<FourthPage> {
+class _ThirdPageState extends BaseTabPageState<ThirdPage> {
   @override
   void initState() {
     super.initState();
@@ -24,11 +26,13 @@ class _FourthPagePageState extends BaseTabPageState<FourthPage> {
   @override
   void didAppear() {
     super.didAppear();
+    print("ThirdPage回来了");
   }
 
   @override
   void disappear() {
     super.disappear();
+    print("ThirdPage消失了");
   }
 
   @override
@@ -41,7 +45,6 @@ class _FourthPagePageState extends BaseTabPageState<FourthPage> {
     super.onForeground();
   }
 
-
   @override
   void dispose() {
     super.dispose();
@@ -52,12 +55,19 @@ class _FourthPagePageState extends BaseTabPageState<FourthPage> {
     super.build(context);
     return Scaffold(
       body: Center(
-        child: Text("first_page"),),
+          child: RaisedButton(
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => FourthPage()));
+            },
+            child: Text("third_page"),
+          )
+      ),
     );
   }
 
   @override
   int getIndex() {
-    return 0;
+    return 2;
   }
 }

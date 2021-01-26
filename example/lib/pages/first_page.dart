@@ -1,7 +1,8 @@
-import 'package:exmaple/fouth_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lifecycler_base/tab/base_tab_page_widget.dart';
+import 'package:flutter_lifecycle_base/tab/base_tab_page_widget.dart';
+
+import '../fouth_page.dart';
 
 class FirstPage extends BaseTabPageWidget {
   @override
@@ -24,21 +25,25 @@ class _FirstPageState extends BaseTabPageState<FirstPage> {
   @override
   void didAppear() {
     super.didAppear();
+    print("FirstPage回来了");
   }
 
   @override
   void disappear() {
     super.disappear();
+    print("FirstPage回来了");
   }
 
   @override
   void onBackground() {
     super.onBackground();
+    pageLog("从前台到后台");
   }
 
   @override
   void onForeground() {
     super.onForeground();
+    pageLog("从后台回来");
   }
 
   @override
@@ -61,6 +66,8 @@ class _FirstPageState extends BaseTabPageState<FirstPage> {
       ),
     );
   }
+
+
 
   @override
   int getIndex() {

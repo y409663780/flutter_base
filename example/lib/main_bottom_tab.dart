@@ -1,15 +1,16 @@
-import 'package:exmaple/pages/first_page.dart';
-import 'package:exmaple/pages/second_page.dart';
-import 'package:exmaple/pages/third_page.dart';
+import 'package:example/pages/first_page.dart';
+import 'package:example/pages/second_page.dart';
+import 'package:example/pages/third_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lifecycler_base/tab/base_tab_widget.dart';
-import 'package:flutter_lifecycler_base/tab/pageview_widget.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_lifecycle_base/tab/base_tab_widget.dart';
+import 'package:flutter_lifecycle_base/tab/pageview_widget.dart';
+import 'package:flutter_lifecycle_base/widget/status_bar_wrap.dart';
 
 import 'main_double_back_tap_exit_app.dart';
 
 class MainBottomTabView extends BaseTabWidget {
-
   @override
   _MainBottomTabViewState createState() => _MainBottomTabViewState();
 }
@@ -19,21 +20,17 @@ class _MainBottomTabViewState extends BaseTabState<MainBottomTabView> {
   List<Widget> _pages;
   PageController _controller;
 
-  List<Widget> pages = [
-    FirstPage(),
-    SecondPage(),
-    ThirdPage()
-  ];
+  List<Widget> pages = [FirstPage(), SecondPage(), ThirdPage()];
 
   List<BottomNavigationBarItem> tabList = [
     BottomNavigationBarItem(
         icon: Image.asset('assets/images/icon_main_tab_first_default.png'),
         title: Text(
           'First',
-         // style: labelStyle,
+          // style: labelStyle,
         ),
         activeIcon:
-        Image.asset('assets/images/icon_main_tab_first_selected.png')),
+            Image.asset('assets/images/icon_main_tab_first_selected.png')),
     BottomNavigationBarItem(
         icon: Image.asset('assets/images/icon_main_tab_second_default.png'),
         title: Text(
@@ -41,15 +38,15 @@ class _MainBottomTabViewState extends BaseTabState<MainBottomTabView> {
           //style: labelStyle,
         ),
         activeIcon:
-        Image.asset('assets/images/icon_main_tab_second_selected.png')),
+            Image.asset('assets/images/icon_main_tab_second_selected.png')),
     BottomNavigationBarItem(
         icon: Image.asset('assets/images/icon_main_tab_third_default.png'),
         title: Text(
           'Third',
-         // style: labelStyle,
+          // style: labelStyle,
         ),
         activeIcon:
-        Image.asset('assets/images/icon_main_tab_third_selected.png')),
+            Image.asset('assets/images/icon_main_tab_third_selected.png')),
   ];
 
   @override
@@ -64,12 +61,15 @@ class _MainBottomTabViewState extends BaseTabState<MainBottomTabView> {
   Widget build(BuildContext context) {
     return DoubleBackTapExitApp(
       child: Scaffold(
-        body: PageWidget(
-          /// 禁止滑动
-          physics: NeverScrollableScrollPhysics(),
-          tabWidgets: _pages,
-          controller: _controller,
-          onPageChanged: _onPageChanged,
+        body: StatusBarWrap(
+          style: SystemUiOverlayStyle.dark,
+          child: PageWidget(
+            /// 禁止滑动
+            physics: NeverScrollableScrollPhysics(),
+            tabWidgets: _pages,
+            controller: _controller,
+            onPageChanged: _onPageChanged,
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: tabList,
